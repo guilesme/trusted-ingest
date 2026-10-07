@@ -1,0 +1,11 @@
+services:
+  trusted-ingest:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "${TRUSTED_INGEST_BIND:-127.0.0.1}:8080:8080"
+    volumes:
+      - trusted_ingest_runtime:/var/lib/trusted-ingest
+
+volumes:
+  trusted_ingest_runtime:
