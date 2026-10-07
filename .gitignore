@@ -1,0 +1,40 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Runtime/private data
+data/
+uploads/
+outputs/
+output/
+artifacts/
+cache/
+tmp/
+temp/
+*.db
+*.sqlite
+*.sqlite3
+
+# WhatsApp/private exports
+*WhatsApp*.txt
+*whatsapp*.txt
+*.zip
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Editors / OS
+.DS_Store
+.idea/
+.vscode/
