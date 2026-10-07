@@ -17,7 +17,7 @@ The API accepts a supported document, converts it with Docling, and returns stru
 ```bash
 python3 -m venv .venv
 . .venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements-dev.txt
 uvicorn app.main:app --reload --port 8080
 ```
 

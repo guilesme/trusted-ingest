@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import hashlib
-import json
 import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
@@ -53,7 +52,7 @@ def healthz() -> dict[str, str]:
 
 @app.post("/v0/ingest")
 async def ingest(file: UploadFile = File(...)) -> JSONResponse:
-    filename = file.filename or "upload"
+    filename = Path(file.filename or "upload").name
     suffix = Path(filename).suffix.lower()
     if suffix not in _ALLOWED_SUFFIXES:
         raise HTTPException(status_code=415, detail=f"unsupported file type: {suffix or '[none]'}")

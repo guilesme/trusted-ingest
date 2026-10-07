@@ -43,3 +43,16 @@ def test_ingest_reports_conversion_failure(monkeypatch):
     response = client.post('/v0/ingest', files={'file': ('synthetic.txt', b'content', 'text/plain')})
     assert response.status_code == 422
     assert 'Docling conversion failed' in response.json()['detail']
+
+
+def test_ingest_does_not_use_client_path(monkeypatch):
+    observed = {}
+
+    def fake_convert(path):
+        observed['name'] = path.name
+        return '# Safe\n'
+
+    monkeypatch.setattr(main, '_convert_to_markdown', fake_convert)
+    response = client.post('/v0/ingest', files={'file': ('../../private.txt', b'content', 'text/plain')})
+    assert response.status_code == 200
+    assert observed['name'] == 'private.txt'
