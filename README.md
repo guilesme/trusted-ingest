@@ -42,6 +42,8 @@ docker compose up --build
 
 The bind address is environment-specific and can be changed outside Git with `TRUSTED_INGEST_BIND`. Do not commit real LAN addresses or infrastructure details.
 
+An opt-in [CPU image](docs/cpu.md) uses pinned CPU-only PyTorch wheels. The default Docker/Compose build remains unchanged in dependency selection.
+
 ## Tests
 
 ```bash
