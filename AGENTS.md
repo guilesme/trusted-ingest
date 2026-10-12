@@ -37,3 +37,10 @@ Before any commit, inspect the diff for sensitive information. If uncertain whet
 Application work is primarily coordinated by Max. Sirius/container/network deployment work is primarily coordinated by Atlas. Dexter and all other agents follow the same repository rules. Role assignment never overrides these safety requirements.
 
 Prefer PRs and reviewable changes over direct changes to main.
+
+## Agent code-quality pilot
+- Reusable guidance: [Agent Code Quality baseline](https://github.com/guilesme/personal-agent-skills/blob/main/governance/agent-code-quality.md) (apply after the upstream pilot policy is merged). This file's public-repository safety rules always take precedence.
+- Before editing, review the issue, existing tests and the smallest relevant API/Docling conversion boundary. Avoid speculative V0 infrastructure and unrelated refactors.
+- Lightweight tests: install `requirements-dev.txt` in an isolated environment and run `pytest -q`. The current CI runs this command; do **not** claim lint/typecheck/security scan is active unless verified.
+- Test ingestion contracts, manifest/provenance and failure behavior using synthetic fixtures only. Do not log input contents, client filenames or private details in exception text or CI output.
+- Include the executed commands and PASS/FAIL/NOT_RUN results, diff and privacy inspection, CI URL/status and risks in the PR. Missing checks require an explicit reason rather than a presumed PASS.
